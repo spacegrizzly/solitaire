@@ -209,8 +209,8 @@ def evaluate_end(a, spec: dict):
         spec["running"] = False
         print("Solution with one pin found!")
         if True:
-            print("Pins in\t", spec["pins in"])
             print("Move list\t", spec["move_list"])
+            print("Pins in\t", pins_in)
             print(a)
 
     return 0
@@ -224,14 +224,16 @@ def save_run(a, spec: dict):
     :param spec: dict, specifications dictionary for modifying the program
     :return: 0
     """
+
     if spec["reset"] or not spec["running"]:
-        all_move_hist = spec["all_move_hist"]
-        all_move_hist.append({
-            "iteration": spec["iteration"],
-            "move_list": spec["move_list"],
-            "board": a,
-            "pins_in": np.sum(np.sum(a))
-        })
+        if False:
+            all_move_hist = spec["all_move_hist"]
+            all_move_hist.append({
+                "iteration": spec["iteration"],
+                "move_list": spec["move_list"],
+                "board": a,
+                "pins_in": np.sum(np.sum(a))
+            })
 
         spec["iteration"] = spec["iteration"] + 1
 
@@ -239,10 +241,10 @@ def save_run(a, spec: dict):
             print("Iteration\t\t", spec["iteration"])
             print("Saving run ...")
 
-        if spec["iteration"] % 100 == 0:
+        if spec["iteration"] % 1000 == 0:
             print(f"Iteration\t\t{spec['iteration']}\t\t\t\t"
                   f"Time\t\t{round((time.time() - spec['start_time']) / 60, 1)}\tmin")
-            time.sleep(.5)
+            # time.sleep(.5)
 
     return 0
 
